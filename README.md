@@ -29,7 +29,7 @@ Alias the PushNotification facade by adding it to the aliases array in the `app/
 
 Copy the config file into your project by running
 ```
-php artisan vendor:publish witty/laravel-push-notification
+php artisan vendor:publish
 ```
 
 This will generate a config file like this
