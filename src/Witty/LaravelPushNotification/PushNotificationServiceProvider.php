@@ -25,8 +25,8 @@ class PushNotificationServiceProvider extends ServiceProvider {
 
         $this->publishes([
         	__DIR__ . '/../../config/config.php' 					=> config_path('pushnotification.php'),
-        	__DIR__ . '/../../config/ios-certificates/development'  => config_path('ios-push-nofitication-certificates/development'),
-        	__DIR__ . '/../../config/ios-certificates/production' 	=> config_path('ios-push-nofitication-certificates/production')
+        	__DIR__ . '/../../config/ios-certificates/development'  => config_path('ios-push-notification-certificates/development'),
+        	__DIR__ . '/../../config/ios-certificates/production' 	=> config_path('ios-push-notification-certificates/production')
     	]);
     }
 

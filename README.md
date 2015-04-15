@@ -10,6 +10,7 @@ Update your `composer.json` file to include this package as a dependency
 "witty/laravel-push-notification": "dev-master"
 ```
 
+
 Register the PushNotification service provider by adding it to the providers array in the `app/config/app.php` file.
 ```php
 'providers' => array(
@@ -51,13 +52,6 @@ array(
 Where all first level keys corresponds to an service configuration, each service has its own properties, android for instance have `apiKey` and IOS uses `certificate` and `passPhrase`. You can set as many services configurations as you want, one for each app.  A directory with the name 'ios-push-notification-certificates' will be added to the config folder for you to store both development and production certificates.
 
 ##### Dont forget to set `service` key to identify iOS `'service'=>'apns'` and Android `'service'=>'gcm'`
-
-##### The certificate path must be an absolute path, so in the configuration file you can use these:
-```
-//Path to the 'app' folder
-'certificate'=>app_path().'/myCert.pem'
-```
-Laravel functions are also available `public_path()` `storage_path()` `base_path()`
 
 # Usage
 ```php
