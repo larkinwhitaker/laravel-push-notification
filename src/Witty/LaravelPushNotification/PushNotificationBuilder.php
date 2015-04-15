@@ -9,43 +9,44 @@ class PushNotificationBuilder {
 
     public function Message()
     {
-    	return $this->getInstance( 'Sly\NotificationPusher\Model\Message' );
+		$instance = (new \ReflectionClass('Sly\NotificationPusher\Model\Message'));
+		return $instance->newInstanceArgs(func_get_args());
     }
 
     public function Device()
     {
-    	return $this->getInstance( 'Sly\NotificationPusher\Model\Device' );
+		$instance = (new \ReflectionClass('Sly\NotificationPusher\Model\Device'));
+		return $instance->newInstanceArgs(func_get_args());
     }
 
     public function DeviceCollection()
     {
-    	return $this->getInstance( 'Sly\NotificationPusher\Collection\DeviceCollection' );
+		$instance = (new \ReflectionClass('Sly\NotificationPusher\Collection\DeviceCollection'));
+		return $instance->newInstanceArgs(func_get_args());
     }
 
     public function PushManager()
     {
-    	return $this->getInstance( 'Sly\NotificationPusher\PushManager' );
+		$instance = (new \ReflectionClass('Sly\NotificationPusher\PushManager'));
+		return $instance->newInstanceArgs(func_get_args());
     }
 
     public function ApnsAdapter()
     {
-    	return $this->getInstance( 'Sly\NotificationPusher\Adapter\ApnsAdapter' );
+		$instance = (new \ReflectionClass('Sly\NotificationPusher\Adapter\ApnsAdapter'));
+		return $instance->newInstanceArgs(func_get_args());
     }
 
     public function GcmAdapter()
     {
-    	return $this->getInstance( 'Sly\NotificationPusher\Model\GcmAdapter' );
+		$instance = (new \ReflectionClass('Sly\NotificationPusher\Model\GcmAdapter'));
+		return $instance->newInstanceArgs(func_get_args());
     }
 
     public function Push()
     {
-    	return $this->getInstance( 'Sly\NotificationPusher\Model\Push' );
-    }
-
-    private function getInstance( $reflectionClassName )
-    {
-		$instance = ( new \ReflectionClass( $reflectionClassName ) );
-        return $instance->newInstanceArgs( func_get_args() );
+		$instance = (new \ReflectionClass('Sly\NotificationPusher\Model\Push'));
+		return $instance->newInstanceArgs(func_get_args());
     }
 
 }
