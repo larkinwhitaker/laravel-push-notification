@@ -11,14 +11,14 @@ Update your `composer.json` file to include this package as a dependency
 ```
 
 
-Register the PushNotification service provider by adding it to the providers array in the `app/config/app.php` file.
+Register the PushNotification service provider by adding it to the providers array in the `config/app.php` file.
 ```php
 'providers' => array(
     'Witty\LaravelPushNotification\PushNotificationServiceProvider'
 )
 ```
 
-Alias the PushNotification facade by adding it to the aliases array in the `app/config/app.php` file.
+Alias the PushNotification facade by adding it to the aliases array in the `config/app.php` file.
 ```php
 'aliases' => array(
 	'PushNotification'      => 'Witty\LaravelPushNotification\PushNotification',
