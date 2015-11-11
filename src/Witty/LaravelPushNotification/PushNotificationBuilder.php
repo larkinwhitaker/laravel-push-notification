@@ -1,52 +1,97 @@
-<?php namespace Witty\LaravelPushNotification;
+<?php 
 
-class PushNotificationBuilder {
+namespace Witty\LaravelPushNotification;
 
-    public function app($appName)
+use Illuminate\Support\Facades\Config;
+use Witty\LaravelPushNotification\PushNotifier;
+
+class PushNotificationBuilder 
+{
+	/**
+	 * @param mixed $platform_name
+	 * @return \Witty\LaravelPushNotification\PushNotifier
+	 */
+    public function app($platform_name)
     {
-        return new PushNotifier( \Config::get('pushnotification.' . $appName) );
+    	$config = [];
+
+    	if ( is_string($platform_name) )
+    	{
+    		$config = Config::get('pushnotification.' . $platform_name);
+    	}
+    	else if ( is_array($platform_name) )
+    	{
+    		$config = $platform_name;
+    	}
+
+        return new PushNotifier( $config );
     }
 
+    /**
+	 * @return \Sly\NotificationPusher\Model\Message
+	 */
     public function Message()
     {
-		$instance = (new \ReflectionClass('Sly\NotificationPusher\Model\Message'));
-		return $instance->newInstanceArgs(func_get_args());
+		return $this->sly_class_instance('Sly\NotificationPusher\Model\Message', func_get_args());
     }
 
+    /**
+	 * @return \Sly\NotificationPusher\Model\Device
+	 */
     public function Device()
     {
-		$instance = (new \ReflectionClass('Sly\NotificationPusher\Model\Device'));
-		return $instance->newInstanceArgs(func_get_args());
+		return $this->sly_class_instance('Sly\NotificationPusher\Model\Device', func_get_args());
     }
 
+    /**
+	 * @return \Sly\NotificationPusher\Collection\DeviceCollection
+	 */
     public function DeviceCollection()
     {
-		$instance = (new \ReflectionClass('Sly\NotificationPusher\Collection\DeviceCollection'));
-		return $instance->newInstanceArgs(func_get_args());
+		return $this->sly_class_instance('Sly\NotificationPusher\Collection\DeviceCollection', func_get_args());
     }
 
+    /**
+	 * @return \Sly\NotificationPusher\PushManager
+	 */
     public function PushManager()
     {
-		$instance = (new \ReflectionClass('Sly\NotificationPusher\PushManager'));
-		return $instance->newInstanceArgs(func_get_args());
+		return $this->sly_class_instance('Sly\NotificationPusher\PushManager', func_get_args());
     }
 
+    /**
+	 * @return \Sly\NotificationPusher\Model\ApnsAdapter
+	 */
     public function ApnsAdapter()
     {
-		$instance = (new \ReflectionClass('Sly\NotificationPusher\Adapter\ApnsAdapter'));
-		return $instance->newInstanceArgs(func_get_args());
+		return $this->sly_class_instance('Sly\NotificationPusher\Model\ApnsAdapter', func_get_args());
     }
 
+    /**
+	 * @return \Sly\NotificationPusher\Model\GcmAdapter
+	 */
     public function GcmAdapter()
     {
-		$instance = (new \ReflectionClass('Sly\NotificationPusher\Model\GcmAdapter'));
-		return $instance->newInstanceArgs(func_get_args());
+		return $this->sly_class_instance('Sly\NotificationPusher\Model\GcmAdapter', func_get_args());
     }
 
+    /**
+	 * @return \Sly\NotificationPusher\Model\Push
+	 */
     public function Push()
     {
-		$instance = (new \ReflectionClass('Sly\NotificationPusher\Model\Push'));
-		return $instance->newInstanceArgs(func_get_args());
+		return $this->sly_class_instance('Sly\NotificationPusher\Model\Push', func_get_args());
+    }
+
+    /**
+	 * @param string $class_name
+	 * @return mixed
+	 */
+    private function sly_class_instance($class_name, $args)
+    {
+		$instance = new \ReflectionClass( $class_name );
+
+		return $instance->newInstanceArgs( $args );
     }
 
 }

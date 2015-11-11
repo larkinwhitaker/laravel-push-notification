@@ -1,9 +1,12 @@
-<?php namespace Witty\LaravelPushNotification;
+<?php 
+
+namespace Witty\LaravelPushNotification;
 
 use Illuminate\Support\ServiceProvider;
+use Witty\LaravelPushNotification\PushNotificationBuilder;
 
-class PushNotificationServiceProvider extends ServiceProvider {
-
+class PushNotificationServiceProvider extends ServiceProvider 
+{
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -37,20 +40,9 @@ class PushNotificationServiceProvider extends ServiceProvider {
      */
     public function register()
     {
-        $this->app['pushNotification'] = $this->app->share(function($app)
+        $this->app['push_notification'] = $this->app->share(function($app)
         {
             return new PushNotificationBuilder;
         });
     }
-
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
-    public function provides()
-    {
-        return array();
-    }
-
 }
